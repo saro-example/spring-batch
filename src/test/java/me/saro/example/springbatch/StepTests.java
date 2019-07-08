@@ -1,8 +1,7 @@
 package me.saro.example.springbatch;
 
 import lombok.extern.slf4j.Slf4j;
-import me.saro.example.springbatch.person.PersonBatchConfiguration;
-import me.saro.example.springbatch.person.PersonJobCompletionNotificationListener;
+import me.saro.example.springbatch.step.StepBatchConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,14 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBatchTest
 @EnableBatchProcessing
-@ContextConfiguration(classes = { PersonBatchConfiguration.class, PersonJobCompletionNotificationListener.class })
+@ContextConfiguration(classes = { StepBatchConfiguration.class })
 @Slf4j
-public class PersonTests {
+public class StepTests {
 
 	@Autowired
 	JobLauncherTestUtils jobLauncherTestUtils;

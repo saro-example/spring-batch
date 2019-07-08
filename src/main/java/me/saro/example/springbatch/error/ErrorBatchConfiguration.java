@@ -1,4 +1,4 @@
-package me.saro.example.springbatch.step;
+package me.saro.example.springbatch.error;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 @EnableAutoConfiguration
 @Slf4j
-public class StepBatchConfiguration {
+public class ErrorBatchConfiguration {
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -75,6 +75,12 @@ public class StepBatchConfiguration {
         @Override
         public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
             log.info("[" + name + "] execute");
+
+            if (name.equals("step 2")) {
+                // ERROR STEP 2
+                int a = 1 / 0;
+            }
+
             return RepeatStatus.FINISHED;
         }
 

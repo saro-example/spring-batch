@@ -1,8 +1,7 @@
 package me.saro.example.springbatch;
 
 import lombok.extern.slf4j.Slf4j;
-import me.saro.example.springbatch.person.PersonBatchConfiguration;
-import me.saro.example.springbatch.person.PersonJobCompletionNotificationListener;
+import me.saro.example.springbatch.error.ErrorBatchConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,14 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBatchTest
 @EnableBatchProcessing
-@ContextConfiguration(classes = { PersonBatchConfiguration.class, PersonJobCompletionNotificationListener.class })
+@ContextConfiguration(classes = { ErrorBatchConfiguration.class })
 @Slf4j
-public class PersonTests {
+public class ErrorTests {
 
 	@Autowired
 	JobLauncherTestUtils jobLauncherTestUtils;
@@ -32,6 +29,7 @@ public class PersonTests {
 		var jobExecution = jobLauncherTestUtils.launchJob();
 		log.info("started");
 
-		Assert.assertEquals(ExitStatus.COMPLETED.getExitCode(), jobExecution.getExitStatus().getExitCode());
+		log.info(jobExecution.toString());
+		Assert.assertEquals(ExitStatus.FAILED.getExitCode(), jobExecution.getExitStatus().getExitCode());
 	}
 }
