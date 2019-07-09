@@ -21,9 +21,9 @@ public class ErrorBatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Bean
-    public Job stepTestJob() {
-        return jobBuilderFactory.get("stepTestJob")
+    @Bean("stepTestErrorJob")
+    public Job stepTestErrorJob() {
+        return jobBuilderFactory.get("stepTestErrorJob")
                 .listener(new JobLogListener())
                 .start(stepTestJobStep1())
                 .next(stepTestJobStep2())

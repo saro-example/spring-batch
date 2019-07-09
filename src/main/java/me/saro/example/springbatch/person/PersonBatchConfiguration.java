@@ -57,7 +57,7 @@ public class PersonBatchConfiguration {
     // end::readerwriterprocessor[]
 
     // tag::jobstep[]
-    @Bean
+    @Bean("importUserJob")
     public Job importUserJob(PersonJobCompletionNotificationListener listener, Step step1) {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())

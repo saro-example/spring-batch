@@ -21,7 +21,7 @@ public class StepBatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+    @Bean("stepTestJob")
     public Job stepTestJob() {
         return jobBuilderFactory.get("stepTestJob")
                 .listener(new JobLogListener())
