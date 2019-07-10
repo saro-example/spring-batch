@@ -11,8 +11,8 @@ ErrorTests.java
 PersonTests.java
 StepTests.java
 
-## 자동실행
+## 스케줄러 (크론)
 CronConfiguration.java
 
-## 웹실행
+## 웹 실행
 ApiController.java
