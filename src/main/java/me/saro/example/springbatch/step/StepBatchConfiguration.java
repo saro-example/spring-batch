@@ -10,7 +10,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 @EnableAutoConfiguration
 @Slf4j
 public class StepBatchConfiguration {
@@ -21,7 +23,7 @@ public class StepBatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Bean("stepTestJob")
+    @Bean
     public Job stepTestJob() {
         return jobBuilderFactory.get("stepTestJob")
                 .listener(new JobLogListener())

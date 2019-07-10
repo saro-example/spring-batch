@@ -10,7 +10,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 @EnableAutoConfiguration
 @Slf4j
 public class ErrorBatchConfiguration {
@@ -21,19 +23,19 @@ public class ErrorBatchConfiguration {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
-    @Bean("stepTestErrorJob")
+    @Bean
     public Job stepTestErrorJob() {
         return jobBuilderFactory.get("stepTestErrorJob")
                 .listener(new JobLogListener())
-                .start(stepTestJobStep1())
-                .next(stepTestJobStep2())
-                .next(stepTestJobStep3())
-                .next(stepTestJobStep4())
+                .start(stepTestErrorJobStep1())
+                .next(stepTestErrorJobStep2())
+                .next(stepTestErrorJobStep3())
+                .next(stepTestErrorJobStep4())
                 .build();
     }
 
     @Bean
-    public Step stepTestJobStep1() {
+    public Step stepTestErrorJobStep1() {
         return stepBuilderFactory
                 .get("StepBuilder 1")
                 .tasklet(new Task("step 1"))
@@ -41,7 +43,7 @@ public class ErrorBatchConfiguration {
     }
 
     @Bean
-    public Step stepTestJobStep2() {
+    public Step stepTestErrorJobStep2() {
         return stepBuilderFactory
                 .get("StepBuilder 2")
                 .tasklet(new Task("step 2"))
@@ -49,7 +51,7 @@ public class ErrorBatchConfiguration {
     }
 
     @Bean
-    public Step stepTestJobStep3() {
+    public Step stepTestErrorJobStep3() {
         return stepBuilderFactory
                 .get("StepBuilder 3")
                 .tasklet(new Task("step 3"))
@@ -57,7 +59,7 @@ public class ErrorBatchConfiguration {
     }
 
     @Bean
-    public Step stepTestJobStep4() {
+    public Step stepTestErrorJobStep4() {
         return stepBuilderFactory
                 .get("StepBuilder 4")
                 .tasklet(new Task("step 4"))

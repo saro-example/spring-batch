@@ -14,10 +14,12 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
 
+@Configuration
 @EnableAutoConfiguration
 public class PersonBatchConfiguration {
 
@@ -57,7 +59,7 @@ public class PersonBatchConfiguration {
     // end::readerwriterprocessor[]
 
     // tag::jobstep[]
-    @Bean("importUserJob")
+    @Bean
     public Job importUserJob(PersonJobCompletionNotificationListener listener, Step step1) {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
