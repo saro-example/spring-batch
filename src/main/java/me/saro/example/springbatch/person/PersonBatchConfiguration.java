@@ -37,7 +37,7 @@ public class PersonBatchConfiguration {
                 .resource(new ClassPathResource("sample-data.csv"))
                 .delimited()
                 .names(new String[]{"firstName", "lastName"})
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
+                .fieldSetMapper(new BeanWrapperFieldSetMapper() {{
                     setTargetType(Person.class);
                 }})
                 .build();
